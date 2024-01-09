@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-world
+spec:
+  destination:
+    name: ''
+    namespace: hello-world
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: hello-world/
+    repoURL: 'https://github.com/socz3qqq/gitops-agh.git'
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
